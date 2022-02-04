@@ -23,7 +23,20 @@
       ],
       "UpstreamPathTemplate": "/api/ContactInfo/{everymethod}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    }   
+    }
+
+    {
+      "DownstreamPathTemplate": "/api/Report/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 6000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Report/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    }  
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:7000"
