@@ -1,8 +1,10 @@
 ﻿using System;
 
-namespace Rise.ContractUnitTests
+namespace Rise.ContactUnitTests
 {
     public class CoreTests
     {
+
+
     }
 }

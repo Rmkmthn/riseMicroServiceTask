@@ -1,17 +1,20 @@
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
 using Microsoft.OpenApi.Models;
+using Rise.ContactCore;
+using Rise.ContactCore.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace Rise.ContractAPI
+namespace Rise.ContactAPI
 {
     public class Startup
     {
@@ -29,7 +32,16 @@ namespace Rise.ContractAPI
             services.AddControllers();
             services.AddSwaggerGen(c =>
             {
-                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rise.ContractAPI", Version = "v1" });
+                c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rise.ContactAPI", Version = "v1" });
+            });
+
+            services.AddDbContext<ApplicationDbContext>(options => options.UseNpgsql(Configuration.GetConnectionString("BaseConnection"), b => b.MigrationsAssembly("Rise.ContactCore")));
+            services.AddScoped<DbContext>(provider => provider.GetService<ApplicationDbContext>());
+            services.AddTransient<IContactService>(cs =>
+            {
+                var oDbContext = cs.GetRequiredService<ApplicationDbContext>();                
+
+                return new ContactService(oDbContext);
             });
         }
 
@@ -40,7 +52,7 @@ namespace Rise.ContractAPI
             {
                 app.UseDeveloperExceptionPage();
                 app.UseSwagger();
-                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rise.ContractAPI v1"));
+                app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "Rise.ContactAPI v1"));
             }
 
             app.UseRouting();

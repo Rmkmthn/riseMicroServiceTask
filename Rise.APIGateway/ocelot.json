@@ -1,7 +1,7 @@
 {
   "Routes": [
     {
-      "DownstreamPathTemplate": "/api/account/{everymethod}",
+      "DownstreamPathTemplate": "/api/Contact/{everymethod}",
       "DownstreamScheme": "http",
       "DownstreamHostAndPorts": [
         {
@@ -9,69 +9,9 @@
           "Port": 5000
         }
       ],
-      "UpstreamPathTemplate": "/api/account/{everymethod}",
+      "UpstreamPathTemplate": "/api/Contact/{everymethod}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/company/{everymethod}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/api/company/{everymethod}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/partner/{everymethod}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5001
-        }
-      ],
-      "UpstreamPathTemplate": "/api/partner/{everymethod}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/notification/{everymethod}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 5002
-        }
-      ],
-      "UpstreamPathTemplate": "/api/notification/{everymethod}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/product/{everymethod}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 1000
-        }
-      ],
-      "UpstreamPathTemplate": "/api/product/{everymethod}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    },
-    {
-      "DownstreamPathTemplate": "/api/serialNumber/{everymethod}",
-      "DownstreamScheme": "http",
-      "DownstreamHostAndPorts": [
-        {
-          "Host": "localhost",
-          "Port": 2000
-        }
-      ],
-      "UpstreamPathTemplate": "/api/serialNumber/{everymethod}",
-      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    }
+    }   
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:7000"
