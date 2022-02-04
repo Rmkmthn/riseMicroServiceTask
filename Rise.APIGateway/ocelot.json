@@ -11,6 +11,18 @@
       ],
       "UpstreamPathTemplate": "/api/Contact/{everymethod}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ContactInfo/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ContactInfo/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
     }   
   ],
   "GlobalConfiguration": {

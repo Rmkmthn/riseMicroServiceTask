@@ -13,5 +13,7 @@ namespace Rise.ContactCore.Models
         public string ContactSurname { get; set; }
 
         public string ContactCompany { get; set; }
+
+        public ICollection<ContactInfo> ContactInfos { get; set; }
     }
 }

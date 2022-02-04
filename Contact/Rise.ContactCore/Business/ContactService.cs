@@ -1,5 +1,6 @@
 ﻿using Rise.ContactCore.Models;
 using Rise.ContactCore.Models.HelperModels;
+using Rise.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -8,7 +9,7 @@ using System.Threading.Tasks;
 
 namespace Rise.ContactCore.Business
 {
-    public class ContactService : IContactService
+    public class ContactService : IContactService, IDisposable
     {
         private readonly ApplicationDbContext _ctxApplication;
 
@@ -32,8 +33,9 @@ namespace Rise.ContactCore.Business
             return oPostContact;
         }
 
-        public bool DeleteContact(Guid gID)
+        public ReturnObject<bool> DeleteContact(Guid gID)
         {
+            ReturnObject<bool> oResult = new ReturnObject<bool>();
             bool blnResult = true;
             try
             {
@@ -48,11 +50,18 @@ namespace Rise.ContactCore.Business
             }
             catch (Exception ex)
             {
-                Console.WriteLine(ex.Message);
+                string strErrorMsg = string.Format("Error : {0} -- Detail : {1}", ex.Message, ex.InnerException);
+                Console.WriteLine(strErrorMsg);
+                oResult.AddError(Guid.NewGuid().ToString("N"), strErrorMsg);
                 blnResult = false;
             }
 
-            return blnResult;
+            oResult.ResultObject = blnResult;
+            return oResult;
+        }
+
+        public void Dispose()
+        {
         }
     }
 }

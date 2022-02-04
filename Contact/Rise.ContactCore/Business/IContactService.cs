@@ -1,5 +1,6 @@
 ﻿using Rise.ContactCore.Models;
 using Rise.ContactCore.Models.HelperModels;
+using Rise.Shared;
 using System;
 
 namespace Rise.ContactCore.Business
@@ -8,6 +9,6 @@ namespace Rise.ContactCore.Business
     {
         Contact AddContact(ContactViewModel oNewContact);
 
-        bool DeleteContact(Guid gID);
+        ReturnObject<bool> DeleteContact(Guid gID);
     }
 }

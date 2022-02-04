@@ -10,8 +10,8 @@ using Rise.ContactCore;
 namespace Rise.ContactCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20220204134019_FirstMigration_11")]
-    partial class FirstMigration_11
+    [Migration("20220204202958_FK111")]
+    partial class FK111
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -38,8 +38,8 @@ namespace Rise.ContactCore.Migrations
                         .HasMaxLength(20)
                         .HasColumnType("character varying(20)");
 
-                    b.Property<string>("ConstOrder")
-                        .HasColumnType("text");
+                    b.Property<int?>("ConstOrder")
+                        .HasColumnType("integer");
 
                     b.Property<string>("ConstValue")
                         .HasColumnType("text");
@@ -52,7 +52,39 @@ namespace Rise.ContactCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Const");
+                    b.ToTable("Consts");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = new Guid("76d38e88-8c17-48e8-91f3-02e70f2be0ae"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 148, DateTimeKind.Unspecified).AddTicks(4866), new TimeSpan(0, 3, 0, 0, 0)),
+                            ConstDesc = "Cell Phone",
+                            ConstID = "ContactInfoTypes",
+                            ConstOrder = 0,
+                            ConstValue = "0",
+                            Deleted = false
+                        },
+                        new
+                        {
+                            Id = new Guid("550e991e-7924-41a7-bbee-6c23081ef621"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 151, DateTimeKind.Unspecified).AddTicks(6164), new TimeSpan(0, 3, 0, 0, 0)),
+                            ConstDesc = "E-Mail",
+                            ConstID = "ContactInfoTypes",
+                            ConstOrder = 1,
+                            ConstValue = "1",
+                            Deleted = false
+                        },
+                        new
+                        {
+                            Id = new Guid("d05c4f53-b866-43c5-94a2-e8a981ffd1bf"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 151, DateTimeKind.Unspecified).AddTicks(6190), new TimeSpan(0, 3, 0, 0, 0)),
+                            ConstDesc = "Location",
+                            ConstID = "ContactInfoTypes",
+                            ConstOrder = 2,
+                            ConstValue = "2",
+                            Deleted = false
+                        });
                 });
 
             modelBuilder.Entity("Rise.ContactCore.Models.ConstLang", b =>
@@ -64,9 +96,9 @@ namespace Rise.ContactCore.Migrations
                     b.Property<DateTimeOffset?>("CDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<int>("ConstLangDesc")
+                    b.Property<string>("ConstLangDesc")
                         .HasMaxLength(200)
-                        .HasColumnType("integer");
+                        .HasColumnType("character varying(200)");
 
                     b.Property<Guid>("ConstRID")
                         .HasColumnType("uuid");
@@ -82,7 +114,9 @@ namespace Rise.ContactCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ConstLang");
+                    b.HasIndex("ConstRID");
+
+                    b.ToTable("ConstLangs");
                 });
 
             modelBuilder.Entity("Rise.ContactCore.Models.Contact", b =>
@@ -112,7 +146,9 @@ namespace Rise.ContactCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Contact");
+                    b.HasIndex("ContactCompany");
+
+                    b.ToTable("Contacts");
                 });
 
             modelBuilder.Entity("Rise.ContactCore.Models.ContactInfo", b =>
@@ -142,7 +178,46 @@ namespace Rise.ContactCore.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("ContactInfo");
+                    b.HasIndex("ContactRID");
+
+                    b.HasIndex("InfoTypeRID");
+
+                    b.HasIndex("ContactRID", "InfoTypeRID")
+                        .IsUnique();
+
+                    b.ToTable("ContactInfos");
+                });
+
+            modelBuilder.Entity("Rise.ContactCore.Models.ConstLang", b =>
+                {
+                    b.HasOne("Rise.ContactCore.Models.Const", "Const")
+                        .WithMany("ConstLangs")
+                        .HasForeignKey("ConstRID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Const");
+                });
+
+            modelBuilder.Entity("Rise.ContactCore.Models.ContactInfo", b =>
+                {
+                    b.HasOne("Rise.ContactCore.Models.Contact", "Contact")
+                        .WithMany("ContactInfos")
+                        .HasForeignKey("ContactRID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Contact");
+                });
+
+            modelBuilder.Entity("Rise.ContactCore.Models.Const", b =>
+                {
+                    b.Navigation("ConstLangs");
+                });
+
+            modelBuilder.Entity("Rise.ContactCore.Models.Contact", b =>
+                {
+                    b.Navigation("ContactInfos");
                 });
 #pragma warning restore 612, 618
         }

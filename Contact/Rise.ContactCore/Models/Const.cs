@@ -14,6 +14,8 @@ namespace Rise.ContactCore.Models
 
         public string ConstValue { get; set; }
 
-        public string ConstOrder{ get; set; }
+        public int? ConstOrder { get; set; }
+
+        public ICollection<ConstLang> ConstLangs { get; set; }
     }
 }

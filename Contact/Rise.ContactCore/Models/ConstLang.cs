@@ -12,6 +12,8 @@ namespace Rise.ContactCore.Models
 
         public Guid ConstRID { get; set; }
 
-        public int ConstLangDesc { get; set; }
+        public string ConstLangDesc { get; set; }
+
+        public Const Const { get; set; }
     }
 }
