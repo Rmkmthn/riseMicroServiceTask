@@ -55,8 +55,8 @@ namespace Rise.ContactCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("76d38e88-8c17-48e8-91f3-02e70f2be0ae"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 148, DateTimeKind.Unspecified).AddTicks(4866), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("8a4f8571-c184-4602-935a-5bf7fd78aa2b"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 411, DateTimeKind.Unspecified).AddTicks(335), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Cell Phone",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 0,
@@ -65,8 +65,8 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("550e991e-7924-41a7-bbee-6c23081ef621"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 151, DateTimeKind.Unspecified).AddTicks(6164), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("4ad9a6a0-11eb-4a18-8e71-80710063feea"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2310), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "E-Mail",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 1,
@@ -75,12 +75,32 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("d05c4f53-b866-43c5-94a2-e8a981ffd1bf"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 4, 23, 29, 58, 151, DateTimeKind.Unspecified).AddTicks(6190), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("65246cd0-73db-45c7-8efb-36dde39293a1"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2337), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Location",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 2,
                             ConstValue = "2",
+                            Deleted = false
+                        },
+                        new
+                        {
+                            Id = new Guid("62f07822-e806-4530-a23c-6fe7af9c928d"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2341), new TimeSpan(0, 3, 0, 0, 0)),
+                            ConstDesc = "Preparing",
+                            ConstID = "ReportStatus",
+                            ConstOrder = 0,
+                            ConstValue = "0",
+                            Deleted = false
+                        },
+                        new
+                        {
+                            Id = new Guid("7c3822b8-85a1-405f-b9c1-0a8a24547b9f"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2344), new TimeSpan(0, 3, 0, 0, 0)),
+                            ConstDesc = "Completed",
+                            ConstID = "ReportStatus",
+                            ConstOrder = 1,
+                            ConstValue = "1",
                             Deleted = false
                         });
                 });
@@ -205,12 +225,22 @@ namespace Rise.ContactCore.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Rise.ContactCore.Models.Const", "ConstInfoType")
+                        .WithMany("ContactInfos")
+                        .HasForeignKey("InfoTypeRID")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("ConstInfoType");
+
                     b.Navigation("Contact");
                 });
 
             modelBuilder.Entity("Rise.ContactCore.Models.Const", b =>
                 {
                     b.Navigation("ConstLangs");
+
+                    b.Navigation("ContactInfos");
                 });
 
             modelBuilder.Entity("Rise.ContactCore.Models.Contact", b =>

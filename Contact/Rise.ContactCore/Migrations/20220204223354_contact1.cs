@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Rise.ContactCore.Migrations
 {
-    public partial class FC : Migration
+    public partial class contact1 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -81,6 +81,12 @@ namespace Rise.ContactCore.Migrations
                 {
                     table.PrimaryKey("PK_ContactInfos", x => x.Id);
                     table.ForeignKey(
+                        name: "FK_ContactInfos_Consts_InfoTypeRID",
+                        column: x => x.InfoTypeRID,
+                        principalTable: "Consts",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
                         name: "FK_ContactInfos_Contacts_ContactRID",
                         column: x => x.ContactRID,
                         principalTable: "Contacts",
@@ -93,9 +99,11 @@ namespace Rise.ContactCore.Migrations
                 columns: new[] { "Id", "CDate", "ConstDesc", "ConstID", "ConstOrder", "ConstValue", "Deleted", "MDate" },
                 values: new object[,]
                 {
-                    { new Guid("c5cfe4db-dc64-4f93-8eb6-48ec82a6d195"), new DateTimeOffset(new DateTime(2022, 2, 4, 23, 12, 32, 515, DateTimeKind.Unspecified).AddTicks(5254), new TimeSpan(0, 3, 0, 0, 0)), "Cell Phone", "ContactInfoTypes", 0, "0", false, null },
-                    { new Guid("66ba54e7-a1d4-4f3f-8a4c-696fbf25b263"), new DateTimeOffset(new DateTime(2022, 2, 4, 23, 12, 32, 518, DateTimeKind.Unspecified).AddTicks(6314), new TimeSpan(0, 3, 0, 0, 0)), "E-Mail", "ContactInfoTypes", 1, "1", false, null },
-                    { new Guid("8367d787-d14a-4ef3-a350-900d4ae58d9b"), new DateTimeOffset(new DateTime(2022, 2, 4, 23, 12, 32, 518, DateTimeKind.Unspecified).AddTicks(6339), new TimeSpan(0, 3, 0, 0, 0)), "Location", "ContactInfoTypes", 2, "2", false, null }
+                    { new Guid("8a4f8571-c184-4602-935a-5bf7fd78aa2b"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 411, DateTimeKind.Unspecified).AddTicks(335), new TimeSpan(0, 3, 0, 0, 0)), "Cell Phone", "ContactInfoTypes", 0, "0", false, null },
+                    { new Guid("4ad9a6a0-11eb-4a18-8e71-80710063feea"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2310), new TimeSpan(0, 3, 0, 0, 0)), "E-Mail", "ContactInfoTypes", 1, "1", false, null },
+                    { new Guid("65246cd0-73db-45c7-8efb-36dde39293a1"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2337), new TimeSpan(0, 3, 0, 0, 0)), "Location", "ContactInfoTypes", 2, "2", false, null },
+                    { new Guid("62f07822-e806-4530-a23c-6fe7af9c928d"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2341), new TimeSpan(0, 3, 0, 0, 0)), "Preparing", "ReportStatus", 0, "0", false, null },
+                    { new Guid("7c3822b8-85a1-405f-b9c1-0a8a24547b9f"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2344), new TimeSpan(0, 3, 0, 0, 0)), "Completed", "ReportStatus", 1, "1", false, null }
                 });
 
             migrationBuilder.CreateIndex(
@@ -104,10 +112,25 @@ namespace Rise.ContactCore.Migrations
                 column: "ConstRID");
 
             migrationBuilder.CreateIndex(
+                name: "IX_ContactInfos_ContactRID",
+                table: "ContactInfos",
+                column: "ContactRID");
+
+            migrationBuilder.CreateIndex(
                 name: "IX_ContactInfos_ContactRID_InfoTypeRID",
                 table: "ContactInfos",
                 columns: new[] { "ContactRID", "InfoTypeRID" },
                 unique: true);
+
+            migrationBuilder.CreateIndex(
+                name: "IX_ContactInfos_InfoTypeRID",
+                table: "ContactInfos",
+                column: "InfoTypeRID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Contacts_ContactCompany",
+                table: "Contacts",
+                column: "ContactCompany");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)

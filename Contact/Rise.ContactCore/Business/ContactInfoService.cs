@@ -28,12 +28,18 @@ namespace Rise.ContactCore.Business
 
             try
             {
-                var oExistCI = _ctxApplication.ContactInfos.FirstOrDefault(c => c.Id == oContactInfo.Id ||
-                                        (c.InfoTypeRID == oContactInfo.InfoTypeRID && c.Contact.Id == oContactInfo.ContactRID));
+                var oExistCI = _ctxApplication.ContactInfos.FirstOrDefault(c => c.InfoTypeRID == oContactInfo.InfoTypeRID && c.Contact.Id == oContactInfo.ContactRID);
                 if (oExistCI != null)
                 {
-                    oResult.ResultObject = oExistCI;
-                    oResult.ResultObject.MDate = DateTimeOffset.Now;
+                    if (oExistCI.Id != oContactInfo.Id)
+                    {
+                        oResult.AddError(Guid.NewGuid().ToString("N"), "This record's info type can not change!!");
+                    }
+                    else
+                    {
+                        oResult.ResultObject = oExistCI;
+                        oResult.ResultObject.MDate = DateTimeOffset.Now;
+                    }                   
                 }
                 else
                 {

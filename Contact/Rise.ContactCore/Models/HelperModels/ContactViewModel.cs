@@ -12,6 +12,6 @@ namespace Rise.ContactCore.Models.HelperModels
 
         public string ContactSurname { get; set; }
 
-        public string ContactCompany { get; set; } // Company tablosu yapılmalı.
+        public string ContactCompany { get; set; } 
     }
 }

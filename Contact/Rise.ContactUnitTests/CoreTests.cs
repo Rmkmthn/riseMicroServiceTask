@@ -60,13 +60,34 @@ namespace Rise.ContactUnitTests
             }
         }
         [Fact]
-        public void AddContactInfo()
+        public void A1_AddContactInfo()
         {
             ContactInfo oContactInfo = new ContactInfo
             {
-                ContactRID = new Guid(""),
-                InfoTypeRID = new Guid(""),
-                InfoValue = ""
+                ContactRID = new Guid("267eda3f-96c8-42e5-b59f-d30eab8f3d70"),
+                InfoTypeRID = new Guid("66ba54e7-a1d4-4f3f-8a4c-696fbf25b263"),
+                InfoValue = "tolkuba@gmail.com"
+            };
+
+            using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
+            {
+                ContactInfoService _svcContactInfo = new ContactInfoService(_ctx);
+
+                var oResult = _svcContactInfo.SaveContactInfo(oContactInfo);
+
+                Assert.True(oResult.IsValid && oResult.ResultObject != null);
+            }
+        }
+
+        [Fact]
+        public void A2_AddContactInfo()
+        {
+            ContactInfo oContactInfo = new ContactInfo
+            {
+                Id = new Guid("267eda3f-96c8-42e5-b59f-d30eab8f3d70"),
+                ContactRID = new Guid("267eda3f-96c8-42e5-b59f-d30eab8f3d70"),
+                InfoTypeRID = new Guid("66ba54e7-a1d4-4f3f-8a4c-696fbf25b263"),
+                InfoValue = "tolkuba@xxx.com"
             };
 
             using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
@@ -95,6 +116,25 @@ namespace Rise.ContactUnitTests
                 }
 
                 Assert.True(oResult.IsValid && oResult.ResultObject);
+            }
+        }        
+
+        [Fact]
+        public void GetContactWithInfo()
+        {
+            string strGuid = "267eda3f-96c8-42e5-b59f-d30eab8f3d70";
+
+            Contact oResult = null;
+            using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
+            {
+                using (var _svcContact = new ContactService(_ctx))
+                {
+                    Guid gID = new Guid(strGuid);
+
+                    oResult = _svcContact.GetContactWithInfo(gID);
+                }
+
+                Assert.True(oResult != null && oResult.ContactInfos?.Count > 0);
             }
         }
     }

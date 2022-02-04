@@ -26,8 +26,9 @@ namespace Rise.ContactCore
                 new Const{Id=Guid.NewGuid(),ConstID="ContactInfoTypes",ConstDesc="Cell Phone",ConstValue = "0",ConstOrder = 0},
                 new Const{Id=Guid.NewGuid(),ConstID="ContactInfoTypes",ConstDesc="E-Mail",ConstValue = "1",ConstOrder = 1},
                 new Const{Id=Guid.NewGuid(),ConstID="ContactInfoTypes",ConstDesc="Location",ConstValue = "2",ConstOrder = 2},
+                new Const{Id=Guid.NewGuid(),ConstID="ReportStatus",ConstDesc="Preparing",ConstValue = "0",ConstOrder = 0},
+                new Const{Id=Guid.NewGuid(),ConstID="ReportStatus",ConstDesc="Completed",ConstValue = "1",ConstOrder = 1},                
             });
-
 
             modelBuilder.Entity<ContactInfo>()
                         .HasIndex(c => new { c.ContactRID, c.InfoTypeRID })
@@ -40,12 +41,17 @@ namespace Rise.ContactCore
                         .HasIndex(c => c.InfoTypeRID);
 
             modelBuilder.Entity<Contact>()
-                        .HasIndex(c => c.ContactCompany);
+                        .HasIndex(c => c.ContactCompany);           
 
             modelBuilder.Entity<ContactInfo>()
                 .HasOne<Contact>(g => g.Contact)
                 .WithMany(s => s.ContactInfos)
                 .HasForeignKey(s => s.ContactRID);
+
+            modelBuilder.Entity<ContactInfo>()
+                .HasOne<Const>(g => g.ConstInfoType)
+                .WithMany(s => s.ContactInfos)
+                .HasForeignKey(s => s.InfoTypeRID);
 
             modelBuilder.Entity<ConstLang>()
                .HasOne<Const>(g => g.Const)

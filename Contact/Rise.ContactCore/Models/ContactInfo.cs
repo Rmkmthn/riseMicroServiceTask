@@ -13,6 +13,8 @@ namespace Rise.ContactCore.Models
 
         public string InfoValue { get; set; }
 
-        public  Contact Contact { get; set; }
+        public Contact Contact { get; set; }
+
+        public Const ConstInfoType { get; set; }
     }
 }
