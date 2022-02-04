@@ -1,0 +1,54 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Contact", "Contact", "{A00AE220-B93A-4BEF-8CBD-348BD755228C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Report", "Report", "{37AF21C4-65F1-46BD-AFA7-80D6C493A2D9}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{E8E94574-B37E-44F7-822E-B8A59FB9A4A9}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.APIGateway", "Rise.APIGateway\Rise.APIGateway.csproj", "{982DC8B0-EC02-4288-906A-E291A4C18DF8}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.ContractAPI", "Contact\Rise.ContractAPI\Rise.ContractAPI.csproj", "{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.ContractCore", "Contact\Rise.ContractCore\Rise.ContractCore.csproj", "{7E0BC237-DABD-4251-9BD9-D5277DCE26F6}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Rise.ContractUnitTests", "Contact\Rise.ContractUnitTests\Rise.ContractUnitTests.csproj", "{D78DD339-E79F-4F20-950B-7D0EDDCCBF43}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{982DC8B0-EC02-4288-906A-E291A4C18DF8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{982DC8B0-EC02-4288-906A-E291A4C18DF8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{982DC8B0-EC02-4288-906A-E291A4C18DF8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{982DC8B0-EC02-4288-906A-E291A4C18DF8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7E0BC237-DABD-4251-9BD9-D5277DCE26F6}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7E0BC237-DABD-4251-9BD9-D5277DCE26F6}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7E0BC237-DABD-4251-9BD9-D5277DCE26F6}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7E0BC237-DABD-4251-9BD9-D5277DCE26F6}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D78DD339-E79F-4F20-950B-7D0EDDCCBF43}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D78DD339-E79F-4F20-950B-7D0EDDCCBF43}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D78DD339-E79F-4F20-950B-7D0EDDCCBF43}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D78DD339-E79F-4F20-950B-7D0EDDCCBF43}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{2137A6CE-DE45-4ADB-8ED9-C2FCD8EE16E7} = {A00AE220-B93A-4BEF-8CBD-348BD755228C}
+		{7E0BC237-DABD-4251-9BD9-D5277DCE26F6} = {A00AE220-B93A-4BEF-8CBD-348BD755228C}
+		{D78DD339-E79F-4F20-950B-7D0EDDCCBF43} = {A00AE220-B93A-4BEF-8CBD-348BD755228C}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {75335A9B-1990-4A85-B1E2-5A23E1B1A436}
+	EndGlobalSection
+EndGlobal
