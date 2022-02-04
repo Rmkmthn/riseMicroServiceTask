@@ -8,6 +8,11 @@ using Rise.Shared;
 
 namespace Rise.ContactCore.Business
 {
+    public interface IContactInfoService
+    {
+        ReturnObject<bool> DeleteContactInfo(Guid gID);
+        ReturnObject<ContactInfo> SaveContactInfo(ContactInfo oContactInfo);
+    }
     public class ContactInfoService : IContactInfoService, IDisposable
     {
         private readonly ApplicationDbContext _ctxApplication;

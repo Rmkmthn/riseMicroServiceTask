@@ -12,6 +12,7 @@ using Rise.ContactCore.Business;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Text.Json.Serialization;
 using System.Threading.Tasks;
 
 namespace Rise.ContactAPI
@@ -28,8 +29,8 @@ namespace Rise.ContactAPI
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
-            services.AddControllers();
+            services.AddControllers().AddJsonOptions(x =>
+                                x.JsonSerializerOptions.ReferenceHandler = ReferenceHandler.Preserve);
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Rise.ContactAPI", Version = "v1" });
@@ -39,7 +40,7 @@ namespace Rise.ContactAPI
             services.AddScoped<DbContext>(provider => provider.GetService<ApplicationDbContext>());
             services.AddTransient<IContactService>(cs =>
             {
-                var oDbContext = cs.GetRequiredService<ApplicationDbContext>();                
+                var oDbContext = cs.GetRequiredService<ApplicationDbContext>();
 
                 return new ContactService(oDbContext);
             });
