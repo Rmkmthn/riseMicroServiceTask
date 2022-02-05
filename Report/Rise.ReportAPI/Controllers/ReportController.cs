@@ -60,9 +60,17 @@ namespace Rise.ReportAPI.Controllers
             return Ok(oResult);
         }
 
-        
+        [HttpGet("GetReportDetail")]
+        public IActionResult GetReportDetail(Guid gID, Guid gReportRequestRID)
+        {
+            var oResult = _svcReport.GetReportDetail(gID, gReportRequestRID);
 
-       [HttpGet("RunReport")]
+            return Ok(oResult);
+        }
+
+
+
+        [HttpGet("RunReport")]
         public async Task<IActionResult> RunReport(Guid gID)
         {
             ReturnObject<ReportRequestedIntegrationEvent> oResult = new ReturnObject<ReportRequestedIntegrationEvent>();
