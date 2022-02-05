@@ -10,9 +10,9 @@ namespace Rise.ContactCore.Models
     {
         public Guid Id { get; set; }
 
-        public bool? Deleted { get; set; }
+        public bool? Deleted { get; set; } = false;
 
-        public DateTimeOffset? CDate { get; set; } = new DateTimeOffset();
+        public DateTimeOffset? CDate { get; set; } = DateTimeOffset.Now;
 
         public DateTimeOffset? MDate { get; set; }
     }

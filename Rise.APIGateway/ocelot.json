@@ -11,7 +11,56 @@
       ],
       "UpstreamPathTemplate": "/api/Contact/{everymethod}",
       "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
-    }   
+    },
+    {
+      "DownstreamPathTemplate": "/api/ContactInfo/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ContactInfo/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ContactConst/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5000
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ContactConst/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/Report/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5010
+        }
+      ],
+      "UpstreamPathTemplate": "/api/Report/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    },
+    {
+      "DownstreamPathTemplate": "/api/ReportConst/{everymethod}",
+      "DownstreamScheme": "http",
+      "DownstreamHostAndPorts": [
+        {
+          "Host": "localhost",
+          "Port": 5010
+        }
+      ],
+      "UpstreamPathTemplate": "/api/ReportConst/{everymethod}",
+      "UpstreamHttpMethod": [ "POST", "PUT", "GET" ]
+    }  
+
   ],
   "GlobalConfiguration": {
     "BaseUrl": "http://localhost:7000"

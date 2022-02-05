@@ -12,5 +12,9 @@ namespace Rise.ContactCore.Models
         public Guid InfoTypeRID { get; set; }
 
         public string InfoValue { get; set; }
+
+        public Contact Contact { get; set; }
+
+        public Const ConstInfoType { get; set; }
     }
 }
