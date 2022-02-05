@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace Rise.ReportCore.Migrations
 {
-    public partial class report1 : Migration
+    public partial class Report2 : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -90,11 +90,11 @@ namespace Rise.ReportCore.Migrations
                 columns: new[] { "Id", "CDate", "ConstDesc", "ConstID", "ConstOrder", "ConstValue", "Deleted", "MDate" },
                 values: new object[,]
                 {
-                    { new Guid("ab876e89-949d-4daa-8ffe-ebb64bd8ae14"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 34, 28, 219, DateTimeKind.Unspecified).AddTicks(798), new TimeSpan(0, 3, 0, 0, 0)), "Cell Phone", "ReportInfoTypes", 0, "0", false, null },
-                    { new Guid("fc9d8d88-22b6-40a4-be30-568fa4d0b01a"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 34, 28, 222, DateTimeKind.Unspecified).AddTicks(4070), new TimeSpan(0, 3, 0, 0, 0)), "E-Mail", "ReportInfoTypes", 1, "1", false, null },
-                    { new Guid("31b037a9-157c-49f9-977f-ceb4ee28a9b8"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 34, 28, 222, DateTimeKind.Unspecified).AddTicks(4096), new TimeSpan(0, 3, 0, 0, 0)), "Location", "ReportInfoTypes", 2, "2", false, null },
-                    { new Guid("ae12fa75-5fc4-424a-b4b7-85a8c7bd44cd"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 34, 28, 222, DateTimeKind.Unspecified).AddTicks(4100), new TimeSpan(0, 3, 0, 0, 0)), "Preparing", "ReportStatus", 0, "0", false, null },
-                    { new Guid("34db61c8-34f9-40bc-90c0-1854b9710870"), new DateTimeOffset(new DateTime(2022, 2, 5, 1, 34, 28, 222, DateTimeKind.Unspecified).AddTicks(4102), new TimeSpan(0, 3, 0, 0, 0)), "Completed", "ReportStatus", 1, "1", false, null }
+                    { new Guid("82cbc07a-4f0c-4ab5-ab5e-30dfa9e21a91"), new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 658, DateTimeKind.Unspecified).AddTicks(1195), new TimeSpan(0, 3, 0, 0, 0)), "Cell Phone", "ReportInfoTypes", 0, "0", false, null },
+                    { new Guid("93495646-be1d-43c7-86fc-f3714e6e9e44"), new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(963), new TimeSpan(0, 3, 0, 0, 0)), "E-Mail", "ReportInfoTypes", 1, "1", false, null },
+                    { new Guid("71011eb1-7341-44e5-899b-14ceba3bfa06"), new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(988), new TimeSpan(0, 3, 0, 0, 0)), "Location", "ReportInfoTypes", 2, "2", false, null },
+                    { new Guid("6b294bdc-bf6c-422d-8904-a1ee96bd9e2b"), new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(992), new TimeSpan(0, 3, 0, 0, 0)), "Preparing", "ReportStatus", 0, "0", false, null },
+                    { new Guid("2687f90f-d768-488f-a949-7f32d8b13dcb"), new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(994), new TimeSpan(0, 3, 0, 0, 0)), "Completed", "ReportStatus", 1, "1", false, null }
                 });
 
             migrationBuilder.CreateIndex(

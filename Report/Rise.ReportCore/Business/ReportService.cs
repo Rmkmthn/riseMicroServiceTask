@@ -1,4 +1,5 @@
-﻿using Rise.Shared;
+﻿using Rise.ReportCore.Models;
+using Rise.Shared;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,7 +10,9 @@ namespace Rise.ReportCore.Business
 {
     public interface IReportService
     {
-        ReturnObject<bool> GetReport(Guid gID);
+        Report GetReport(Guid gID);
+
+        IQueryable<Report> GetReports();
     }
     public class ReportService : IReportService
     {
@@ -20,14 +23,14 @@ namespace Rise.ReportCore.Business
             _ctxApplication = ctxApplication;
         }
 
-        public ReturnObject<bool> GetReport(Guid gID)
+        public Report GetReport(Guid gID)
         {
-            ReturnObject<bool> oResult = new ReturnObject<bool>();
+            return _ctxApplication.Reports.Where(r => r.Id == gID).FirstOrDefault();
+        }
 
-
-
-
-            return oResult;
+        public IQueryable<Report> GetReports()
+        {
+            return _ctxApplication.Reports;
         }
     }
 }

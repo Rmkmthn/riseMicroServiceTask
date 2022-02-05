@@ -15,6 +15,9 @@ namespace Rise.ReportCore.Configuration
         public void Configure(EntityTypeBuilder<Report> builder)
         {
             builder.Property(s => s.ReportName).HasMaxLength(100);
+            builder.HasData(new Report[] {
+                new Report{Id=Guid.NewGuid(),ReportID="00001",ReportName="Statistics of Contact by Location"}                
+            });
         }
     }
 }

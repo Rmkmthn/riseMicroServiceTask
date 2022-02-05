@@ -29,7 +29,10 @@ namespace Rise.ReportCore
                 new Const{Id=Guid.NewGuid(),ConstID="ReportStatus",ConstDesc="Preparing",ConstValue = "0",ConstOrder = 0},
                 new Const{Id=Guid.NewGuid(),ConstID="ReportStatus",ConstDesc="Completed",ConstValue = "1",ConstOrder = 1},                
             });
-                      
+
+            //modelBuilder.Entity<ReportRequest>()
+            //.Property(p => p.Id)
+            //.HasDefaultValueSql("uuid_generate_v4()");
 
             modelBuilder.Entity<ReportRequest>()
                 .HasOne<Const>(g => g.ConstReportStatus)

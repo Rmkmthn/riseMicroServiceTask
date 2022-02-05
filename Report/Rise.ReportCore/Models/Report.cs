@@ -8,6 +8,7 @@ namespace Rise.ReportCore.Models
 {
     public class Report : BaseEntity
     {
+        public string ReportID { get; set; }
         public string ReportName { get; set; }
     }
 }

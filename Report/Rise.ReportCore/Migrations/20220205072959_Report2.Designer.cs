@@ -2,6 +2,7 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using Rise.ReportCore;
@@ -9,9 +10,10 @@ using Rise.ReportCore;
 namespace Rise.ReportCore.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
+    [Migration("20220205072959_Report2")]
+    partial class Report2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -55,8 +57,8 @@ namespace Rise.ReportCore.Migrations
                     b.HasData(
                         new
                         {
-                            Id = new Guid("10ce7569-424b-4c8a-aaaa-e4d6862ed1bc"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 220, DateTimeKind.Unspecified).AddTicks(7337), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("82cbc07a-4f0c-4ab5-ab5e-30dfa9e21a91"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 658, DateTimeKind.Unspecified).AddTicks(1195), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Cell Phone",
                             ConstID = "ReportInfoTypes",
                             ConstOrder = 0,
@@ -65,8 +67,8 @@ namespace Rise.ReportCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("ceb5d0ce-384e-4b6b-8daa-56164c33718a"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 220, DateTimeKind.Unspecified).AddTicks(8312), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("93495646-be1d-43c7-86fc-f3714e6e9e44"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(963), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "E-Mail",
                             ConstID = "ReportInfoTypes",
                             ConstOrder = 1,
@@ -75,8 +77,8 @@ namespace Rise.ReportCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("324ade75-b9cf-474f-96aa-de3b0ad37953"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 220, DateTimeKind.Unspecified).AddTicks(8326), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("71011eb1-7341-44e5-899b-14ceba3bfa06"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(988), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Location",
                             ConstID = "ReportInfoTypes",
                             ConstOrder = 2,
@@ -85,8 +87,8 @@ namespace Rise.ReportCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("cda80de6-12da-4a2f-abe6-8cad6954e8c6"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 220, DateTimeKind.Unspecified).AddTicks(8329), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("6b294bdc-bf6c-422d-8904-a1ee96bd9e2b"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(992), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Preparing",
                             ConstID = "ReportStatus",
                             ConstOrder = 0,
@@ -95,8 +97,8 @@ namespace Rise.ReportCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("376f608d-97e2-4bfd-9271-69267bc277e9"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 220, DateTimeKind.Unspecified).AddTicks(8331), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("2687f90f-d768-488f-a949-7f32d8b13dcb"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 10, 29, 59, 661, DateTimeKind.Unspecified).AddTicks(994), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Completed",
                             ConstID = "ReportStatus",
                             ConstOrder = 1,
@@ -152,9 +154,6 @@ namespace Rise.ReportCore.Migrations
                     b.Property<DateTimeOffset?>("MDate")
                         .HasColumnType("timestamp with time zone");
 
-                    b.Property<string>("ReportID")
-                        .HasColumnType("text");
-
                     b.Property<string>("ReportName")
                         .HasMaxLength(100)
                         .HasColumnType("character varying(100)");
@@ -162,16 +161,6 @@ namespace Rise.ReportCore.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Reports");
-
-                    b.HasData(
-                        new
-                        {
-                            Id = new Guid("3dc186b5-750f-4085-abd0-eb4ec385eebe"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 11, 7, 18, 216, DateTimeKind.Unspecified).AddTicks(6617), new TimeSpan(0, 3, 0, 0, 0)),
-                            Deleted = false,
-                            ReportID = "00001",
-                            ReportName = "Statistics of Contact by Location"
-                        });
                 });
 
             modelBuilder.Entity("Rise.ReportCore.Models.ReportRequest", b =>

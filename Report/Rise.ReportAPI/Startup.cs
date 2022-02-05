@@ -43,7 +43,13 @@ namespace Rise.ReportAPI
                 var oDbContext = cs.GetRequiredService<ApplicationDbContext>();
 
                 return new ReportService(oDbContext);
-            });            
+            });
+            services.AddTransient<IReportConstService>(cs =>
+            {
+                var oDbContext = cs.GetRequiredService<ApplicationDbContext>();
+
+                return new ConstService(oDbContext);
+            }); 
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

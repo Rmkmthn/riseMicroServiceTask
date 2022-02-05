@@ -14,6 +14,7 @@ namespace Rise.ReportCore.Configuration
     {
         public void Configure(EntityTypeBuilder<ReportRequest> builder)
         {
+            //builder.Property(b => b.Id).HasDefaultValueSql("CREATE EXTENSION IF NOT EXISTS \"uuid - ossp\"; uuid_generate_v4();");
         }
     }
 }

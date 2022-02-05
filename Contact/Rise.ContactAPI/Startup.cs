@@ -51,6 +51,13 @@ namespace Rise.ContactAPI
 
                 return new ContactInfoService(oDbContext);
             });
+
+            services.AddTransient<IContactConstService>(cs =>
+            {
+                var oDbContext = cs.GetRequiredService<ApplicationDbContext>();
+
+                return new ConstService(oDbContext);
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
