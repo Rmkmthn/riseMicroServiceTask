@@ -15,8 +15,8 @@ namespace Rise.ReportCore.Models
 
         public string ReportFilePath { get; set; }
 
-        public Const ConstReportStatus { get; set; }
+        public virtual Const ConstReportStatus { get; set; }
 
-        public Report Report { get; set; }
+        public virtual Report Report { get; set; }
     }
 }

@@ -10,6 +10,6 @@ namespace Rise.ReportCore.Models
     {
         public string ReportID { get; set; }
         public string ReportName { get; set; }
-        public ICollection<ReportRequest> ReportRequests { get; set; }
+        public virtual ICollection<ReportRequest> ReportRequests { get; set; }
     }
 }

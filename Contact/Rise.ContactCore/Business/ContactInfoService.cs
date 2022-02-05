@@ -3,15 +3,18 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Microsoft.EntityFrameworkCore;
 using Rise.ContactCore.Models;
 using Rise.Shared;
+using System.Data;
+using System.Text.RegularExpressions;
 
 namespace Rise.ContactCore.Business
 {
     public interface IContactInfoService
     {
         ReturnObject<bool> DeleteContactInfo(Guid gID);
-        ReturnObject<ContactInfo> SaveContactInfo(ContactInfo oContactInfo);
+        ReturnObject<ContactInfo> SaveContactInfo(ContactInfo oContactInfo);        
     }
     public class ContactInfoService : IContactInfoService, IDisposable
     {
@@ -28,26 +31,43 @@ namespace Rise.ContactCore.Business
 
             try
             {
-                var oExistCI = _ctxApplication.ContactInfos.FirstOrDefault(c => c.InfoTypeRID == oContactInfo.InfoTypeRID && c.Contact.Id == oContactInfo.ContactRID);
-                if (oExistCI != null)
+                var oConstInfo = _ctxApplication.Consts.Where(c => c.Id == oContactInfo.InfoTypeRID).FirstOrDefault();
+                if (oConstInfo != null)
                 {
-                    if (oExistCI.Id != oContactInfo.Id)
+                    if (oConstInfo.ConstValue == "1")
                     {
-                        oResult.AddError(Guid.NewGuid().ToString("N"), "This record's info type can not change!!");
+                        bool isEmail = Regex.IsMatch(oContactInfo.InfoValue, @"\A(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*@(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?)\Z", RegexOptions.IgnoreCase);
+                        if (!isEmail)
+                        {
+                            oResult.AddError(Guid.NewGuid().ToString("N"), "Email is not valid!!");
+                            return oResult;
+                        }
+                    }
+
+                    var oExistCI = _ctxApplication.ContactInfos.FirstOrDefault(c => c.InfoTypeRID == oContactInfo.InfoTypeRID && c.Contact.Id == oContactInfo.ContactRID);
+                    if (oExistCI != null)
+                    {
+                        if (oExistCI.Id != oContactInfo.Id)
+                        {
+                            oResult.AddError(Guid.NewGuid().ToString("N"), "This record's info type can not change!!");
+                        }
+                        else
+                        {
+                            oResult.ResultObject = oExistCI;
+                            oResult.ResultObject.MDate = DateTimeOffset.Now;
+                        }
                     }
                     else
                     {
-                        oResult.ResultObject = oExistCI;
-                        oResult.ResultObject.MDate = DateTimeOffset.Now;
-                    }                   
+                        oResult.ResultObject = oContactInfo;
+                        _ctxApplication.Add(oResult.ResultObject);
+                    }
+
+                    _ctxApplication.SaveChanges();
                 }
                 else
-                {
-                    oResult.ResultObject = oContactInfo;
-                    _ctxApplication.Add(oResult.ResultObject);
-                }
+                    oResult.AddError(Guid.NewGuid().ToString("N"), "Info Type not found !!");
 
-                _ctxApplication.SaveChanges();
             }
             catch (Exception ex)
             {
@@ -85,6 +105,7 @@ namespace Rise.ContactCore.Business
             oResult.ResultObject = blnResult;
             return oResult;
         }
+        
         public void Dispose()
         {
 

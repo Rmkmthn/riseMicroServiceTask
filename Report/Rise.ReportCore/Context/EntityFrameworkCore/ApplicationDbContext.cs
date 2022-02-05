@@ -17,7 +17,7 @@ namespace Rise.ReportCore
         public DbSet<ConstLang> ConstLangs { get; set; }
         public DbSet<Report> Reports { get; set; }
         public DbSet<ReportRequest> ReportRequests { get; set; }
-
+                
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfigurationsFromAssembly(typeof(ApplicationDbContext).Assembly);

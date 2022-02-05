@@ -14,6 +14,6 @@ namespace Rise.ReportCore.Models
 
         public string ConstLangDesc { get; set; }
 
-        public Const Const { get; set; }
+        public virtual Const Const { get; set; }
     }
 }

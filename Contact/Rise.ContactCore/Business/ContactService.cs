@@ -73,12 +73,12 @@ namespace Rise.ContactCore.Business
 
         public IQueryable<Contact> GetContacts()
         {
-            return _ctxApplication.Contacts;
+            return _ctxApplication.Contacts.AsNoTracking();
         }
 
         public Contact GetContactWithInfo(Guid gID)
         {
-            return _ctxApplication.Contacts.Include(x => x.ContactInfos).Where(c => c.Id == gID).FirstOrDefault();
+            return _ctxApplication.Contacts.Include(x => x.ContactInfos).Where(c => c.Id == gID).AsNoTracking().FirstOrDefault();
         }
 
         public void Dispose()

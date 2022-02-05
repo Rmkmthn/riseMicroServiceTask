@@ -57,7 +57,7 @@ namespace Rise.ReportAPI
             {
                 var oDbContext = cs.GetRequiredService<ApplicationDbContext>();
 
-                return new ReportService(oDbContext);
+                return new ReportService(oDbContext, Configuration);
             });
             services.AddTransient<IReportConstService>(cs =>
             {

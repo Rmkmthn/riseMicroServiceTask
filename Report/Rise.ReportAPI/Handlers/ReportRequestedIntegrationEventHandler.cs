@@ -44,6 +44,7 @@ namespace Rise.ReportAPI.Handlers
 
         public async Task Handle(ReportRequestedIntegrationEvent @event)
         {
+            bool blnHasError = false;
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}"))
             {
                 @event.TypeName = strType;
@@ -55,12 +56,37 @@ namespace Rise.ReportAPI.Handlers
                 if (@event.ReportRequestRID == Guid.Empty)
                 {
                     _logger.LogInformation("User id error");
-                    await _eventLogService.MarkEventAsConsumedFailedAsync(@event.Id);
+                    blnHasError = true;
+                    
                 }
                 else
                 {
-                    await _eventLogService.MarkEventAsConsumedAsync(@event.Id);
+                    var lstResult = _svcReport.GetReportDetail(@event.ReportRID, @event.ReportRequestRID);
+
+                    if (lstResult.IsValid && lstResult.ResultObject != null)
+                    {
+                        var oSaveResult = _svcReport.SaveExcelFile(@event.ReportID,lstResult.ResultObject);
+                        if (oSaveResult.IsValid)
+                        {
+                            var oReportRequest = _svcReport.SaveReportAsCompleted(@event.ReportRequestRID, oSaveResult.ResultObject);
+                            if (oReportRequest != null)
+                            {
+                                _logger.LogInformation("Success transfer");
+                            }
+                            else
+                                blnHasError = true;
+                        }
+                        else
+                            blnHasError = true;
+                    }
+                    else
+                        blnHasError = true;
                 }
+
+                if (blnHasError)
+                    await _eventLogService.MarkEventAsConsumedFailedAsync(@event.Id);
+                else
+                    await _eventLogService.MarkEventAsConsumedAsync(@event.Id);
             }
         }
 

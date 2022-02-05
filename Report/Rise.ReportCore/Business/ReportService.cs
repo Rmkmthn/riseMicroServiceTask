@@ -1,10 +1,14 @@
 ﻿using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
+using Newtonsoft.Json;
 using Rise.ReportCore.Models;
 using Rise.ReportCore.Models.HelperModels;
 using Rise.Shared;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -18,17 +22,27 @@ namespace Rise.ReportCore.Business
 
         IQueryable<ReportRequest> GetReportRequests();
 
+        IQueryable<ReportRequest> GetCompletedReportRequests();
         //ReturnObject<ReportRequestViewModel> RunReport(Guid gID);
 
         ReportRequest AddReportRequest(ReportRequest oReportRequest);
+
+        ReportRequest SaveReportAsCompleted(Guid gID, string strFilePath);
+
+        Report GetReportWithRequests(Guid gID);
+        ReturnObject<object> GetReportDetail(Guid gID, Guid gReportRequestRID);
+        ReturnObject<string> SaveExcelFile(string strReportID, object lstReportDetail);
     }
     public class ReportService : IReportService
     {
         private readonly ApplicationDbContext _ctxApplication;
 
-        public ReportService(ApplicationDbContext ctxApplication)
+        private readonly IConfiguration _config;
+
+        public ReportService(ApplicationDbContext ctxApplication, IConfiguration configuration)
         {
             _ctxApplication = ctxApplication;
+            _config = configuration;
         }
 
         public Report GetReport(Guid gID)
@@ -43,7 +57,7 @@ namespace Rise.ReportCore.Business
 
         public IQueryable<ReportRequest> GetReportRequests()
         {
-            return _ctxApplication.ReportRequests;
+            return _ctxApplication.ReportRequests.Include(x => x.ConstReportStatus).AsNoTracking();
         }
 
         public IQueryable<ReportRequest> GetCompletedReportRequests()
@@ -91,6 +105,98 @@ namespace Rise.ReportCore.Business
             }
 
             return oReportRequest;
+        }
+
+        public ReturnObject<object> GetReportDetail(Guid gID, Guid gReportRequestRID)
+        {
+            ReturnObject<object> oResult = new ReturnObject<object>();
+
+            var oReport = _ctxApplication.Reports.Where(w => w.Id == gID).FirstOrDefault();
+            if (oReport != null)
+            {
+                if (oReport.ReportID == "00001")
+                {
+                    var oReportResult = GetReport00001Detail().Result;
+                    if (oReportResult.IsValid /*&& oReportResult.ResultObject?.Count > 0*/)
+                    {
+                        oResult.ResultObject = oReportResult.ResultObject;
+                    }
+                    else /*if (oReportResult.Errors != null)*/
+                        oResult.AddError(Guid.NewGuid().ToString("N"), string.Join(Environment.NewLine, oReportResult.Errors.Select(x => x.Value)));
+                }
+                else
+                {
+                    oResult.AddError(Guid.NewGuid().ToString("N"), "Report not supported!!");
+                }
+            }
+
+            return oResult;
+        }
+
+        public async Task<ReturnObject<List<Report00001Response>>> GetReport00001Detail()
+        {
+            ReturnObject<List<Report00001Response>> oResult = new ReturnObject<List<Report00001Response>>();
+            string strResult = "";
+            try
+            {
+                string strURL = _config["URL:ContactAPI"].ToString();
+                strURL += (strURL.EndsWith("/") ? "" : "/") + "api/ContactReport/GetReport00001Detail";
+                using (var client = new HttpClient())
+                {
+                    client.Timeout = TimeSpan.FromMinutes(10);
+                    client.BaseAddress = new Uri(strURL);
+                    client.DefaultRequestHeaders.Add("Accept-Language", "tr");
+                    HttpResponseMessage result = await client.GetAsync(strURL).ConfigureAwait(false);
+                    strResult = await result.Content.ReadAsStringAsync().ConfigureAwait(false);
+
+                    if (result.IsSuccessStatusCode)
+                    {
+
+                        oResult.ResultObject = JsonConvert.DeserializeObject<List<Report00001Response>>(strResult);
+                    }
+                    else
+                    {
+                        int intStatusCode = (int)result.StatusCode;
+                        oResult.AddError(Guid.NewGuid().ToString("N"), string.Format("HTTP StatusCode:{0},Http ReasonPhrase :{1} ", intStatusCode, result.ReasonPhrase));
+
+                    }
+                }
+            }
+            catch (HttpRequestException ex)
+            {
+                oResult.AddError(Guid.NewGuid().ToString("N"), string.Format("HttpRequestException Error-- Exception: {0} - Detail : {1}", ex.Message, ex.InnerException));
+
+            }
+            catch (Exception ex)
+            {
+                oResult.AddError(Guid.NewGuid().ToString("N"), string.Format("Exception Error-- Exception: {0} - Detail : {1}", ex.Message, ex.InnerException));
+            }
+            return oResult;
+        }
+
+        public ReturnObject<string> SaveExcelFile(string strReportID, object lstReportDetail)
+        {
+            ReturnObject<string> oResult = new ReturnObject<string>();
+
+            try
+            {
+                string strFilePath = Path.GetTempFileName();
+
+                var strObj = JsonConvert.SerializeObject(lstReportDetail);
+
+                using (var writer = File.CreateText(strFilePath))
+                {
+                    writer.WriteLine(strObj);
+                }
+
+                oResult.ResultObject = strFilePath;
+            }
+            catch (Exception ex)
+            {
+                oResult.AddError(Guid.NewGuid().ToString("N"), string.Format("Exception Error-- Exception: {0} - Detail : {1}", ex.Message, ex.InnerException));
+            }            
+
+            return oResult;
         }
 
         public Report GetReportWithRequests(Guid gID)

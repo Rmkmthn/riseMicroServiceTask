@@ -16,8 +16,8 @@ namespace Rise.ReportCore.Models
 
         public int? ConstOrder { get; set; }
 
-        public ICollection<ConstLang> ConstLangs { get; set; }
+        public virtual ICollection<ConstLang> ConstLangs { get; set; }
 
-        public ICollection<ReportRequest> ReportRequests { get; set; }
+        public virtual ICollection<ReportRequest> ReportRequests { get; set; }
     }
 }
