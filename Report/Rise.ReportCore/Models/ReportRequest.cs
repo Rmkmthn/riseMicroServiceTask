@@ -8,10 +8,15 @@ namespace Rise.ReportCore.Models
 {
     public class ReportRequest : BaseEntity
     {
-        public DateTimeOffset RequestedDate { get; set; }
+        public Guid ReportRID { get; set; }
+        public DateTimeOffset? RequestedDate { get; set; }
 
         public Guid ReportStatusRID { get; set; }
 
+        public string ReportFilePath { get; set; }
+
         public Const ConstReportStatus { get; set; }
+
+        public Report Report { get; set; }
     }
 }

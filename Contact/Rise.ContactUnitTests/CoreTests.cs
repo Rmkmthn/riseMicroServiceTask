@@ -79,6 +79,9 @@ namespace Rise.ContactUnitTests
             }
         }
 
+        /// <summary>
+        /// Bad Test
+        /// </summary>        
         [Fact]
         public void A2_AddContactInfo()
         {
