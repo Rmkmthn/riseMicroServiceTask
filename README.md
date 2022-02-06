@@ -59,7 +59,7 @@ Package Manager Console ile Default Project "IntegrationEventLogEF" seçilerek a
 
 ## Postman 
 
-RISE.postman_collection json dosyası postmana import edilip ilgili sorgulamalar yapılabilir.
+[RISE.postman_collection](./RISE.postman_collection.json) json dosyası postmana import edilip ilgili sorgulamalar yapılabilir.
 
 Genelde işlemler Gateway üzerinden yapılıyor.
 
