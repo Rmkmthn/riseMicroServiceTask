@@ -1,0 +1,364 @@
+{
+	"info": {
+		"_postman_id": "377fd700-e578-4058-bbc1-a71e69496a28",
+		"name": "RISE",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Add Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactName\" : \"test\",\r\n    \"ContactSurname\" : \"surname\",\r\n    \"ContactCompany\" : \"Company\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/api/Contact/Add",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Contact",
+						"Add"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Contact/Delete?gID=4b4b5b6e-621c-4b18-ba76-472b7467e84e",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Contact",
+						"Delete"
+					],
+					"query": [
+						{
+							"key": "gID",
+							"value": "4b4b5b6e-621c-4b18-ba76-472b7467e84e"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Save Contact Info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"ContactRID\" : \"f9d6e1f9-4a26-4005-b34c-f5c9c7a958a9\",\r\n    \"InfoTypeRID\" : \"66ba54e7-a1d4-4f3f-8a4c-696fbf25b263\",\r\n    \"InfoValue\" : \"tolkuba@gmail.com\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:7000/api/ContactInfo/SaveContactInfo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ContactInfo",
+						"SaveContactInfo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete Contact Info",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/ContactInfo/Delete?gID=6ea09264-76eb-4201-a9b0-85627bcb1b90",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ContactInfo",
+						"Delete"
+					],
+					"query": [
+						{
+							"key": "gID",
+							"value": "6ea09264-76eb-4201-a9b0-85627bcb1b90"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contracts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Contact/GetContacts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Contact",
+						"GetContacts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contact and Info",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Contact/GetContactAndInfo?gID=267eda3f-96c8-42e5-b59f-d30eab8f3d70",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Contact",
+						"GetContactAndInfo"
+					],
+					"query": [
+						{
+							"key": "gID",
+							"value": "267eda3f-96c8-42e5-b59f-d30eab8f3d70"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contact Consts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/ContactConst/GetConsts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ContactConst",
+						"GetConsts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Contact Info Types",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/ContactConst/GetInfoTypes",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ContactConst",
+						"GetInfoTypes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Report Consts",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/ReportConst/GetConsts",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ReportConst",
+						"GetConsts"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get Report ReportStatuses",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/ReportConst/GetReportStatuses",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"ReportConst",
+						"GetReportStatuses"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Run Report",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Report/RunReport?gID=519ea9ad-d698-4b6f-819c-535ba27e351f",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Report",
+						"RunReport"
+					],
+					"query": [
+						{
+							"key": "gID",
+							"value": "519ea9ad-d698-4b6f-819c-535ba27e351f"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReport00001(ContactAPI)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:5000/api/ContactReport/GetReport00001Detail",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"api",
+						"ContactReport",
+						"GetReport00001Detail"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetCompletedReportRequests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": null
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportRequests",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Report/GetReportRequests",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Report",
+						"GetReportRequests"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "GetReportDetail(ReportAPI)",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:7000/api/Report/GetReportDetail?gID=&gReportRequestRID=",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "7000",
+					"path": [
+						"api",
+						"Report",
+						"GetReportDetail"
+					],
+					"query": [
+						{
+							"key": "gID",
+							"value": ""
+						},
+						{
+							"key": "gReportRequestRID",
+							"value": ""
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

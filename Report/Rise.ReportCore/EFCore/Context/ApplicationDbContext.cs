@@ -43,6 +43,10 @@ namespace Rise.ReportCore
                .HasOne<Const>(g => g.Const)
                .WithMany(s => s.ConstLangs)
                .HasForeignKey(s => s.ConstRID);
+
+            modelBuilder.Entity<Const>()
+                       .HasIndex(c => new { c.ConstID, c.ConstValue })
+                       .IsUnique();
         }
     }
 

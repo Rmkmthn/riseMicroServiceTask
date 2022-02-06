@@ -12,6 +12,7 @@ using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace Rise.ReportCore.Business
 {
     public interface IReportService
@@ -43,6 +44,17 @@ namespace Rise.ReportCore.Business
         {
             _ctxApplication = ctxApplication;
             _config = configuration;
+        }
+
+        public ReportService(ApplicationDbContext ctxApplication)
+        {
+            _ctxApplication = ctxApplication;
+
+            var config = new ConfigurationBuilder()
+               .AddJsonFile("appsettings.json")
+               .Build();
+
+            _config = config;
         }
 
         public Report GetReport(Guid gID)

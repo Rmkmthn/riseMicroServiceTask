@@ -41,9 +41,17 @@ namespace Rise.ReportAPI.Handlers
             _eventLogService = _integrationEventLogServiceFactory(_integrationContext.Database.GetDbConnection());
             strType = !string.IsNullOrEmpty(_configuration.GetValue<string>("APIType")) ? _configuration.GetValue<string>("APIType") : "Report";
         }
-
+        /// <summary>
+        /// SignalR eklenebilir.
+        /// 
+        /// 
+        /// 
+        /// </summary>
+        /// <param name="event"></param>
+        /// <returns></returns>
         public async Task Handle(ReportRequestedIntegrationEvent @event)
         {
+            
             bool blnHasError = false;
             using (LogContext.PushProperty("IntegrationEventContext", $"{@event.Id}"))
             {
@@ -82,7 +90,7 @@ namespace Rise.ReportAPI.Handlers
                     else
                         blnHasError = true;
                 }
-
+                //Hata detayi loglanabilir.
                 if (blnHasError)
                     await _eventLogService.MarkEventAsConsumedFailedAsync(@event.Id);
                 else

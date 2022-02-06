@@ -9,7 +9,7 @@ using Xunit;
 
 namespace Rise.ReportUnitTests
 {
-    public class CoreTests
+    public class ReportCoreTests
     {
         [Fact]
         public void DbContextTest()
@@ -19,6 +19,19 @@ namespace Rise.ReportUnitTests
                 test = _ctx.Reports.FirstOrDefault();   
 
             Assert.NotNull(test);
-        }   
+        }
+        [Fact]
+        public void GetReportDetail()
+        {
+            using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
+            {
+                var _svcReport = new ReportService(_ctx);
+
+                var lstResult = _svcReport.GetReport00001Detail().Result;
+
+
+                Assert.True(lstResult.IsValid && lstResult.ResultObject?.Count > 0);
+            }
+        }
     }
 }
