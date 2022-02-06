@@ -16,7 +16,7 @@ namespace Rise.ContactUnitTests
         {
             Contact test = null;
             using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
-                test = _ctx.Contacts.FirstOrDefault();   
+                test = _ctx.Contacts.FirstOrDefault();
 
             Assert.NotNull(test);
         }
@@ -79,6 +79,9 @@ namespace Rise.ContactUnitTests
             }
         }
 
+        /// <summary>
+        /// Bad Test
+        /// </summary>        
         [Fact]
         public void A2_AddContactInfo()
         {
@@ -117,7 +120,22 @@ namespace Rise.ContactUnitTests
 
                 Assert.True(oResult.IsValid && oResult.ResultObject);
             }
-        }        
+        }
+
+        [Fact]
+        public void GetReport00001Detail()
+        {
+            ReturnObject<bool> oResult = new ReturnObject<bool>();
+            using (var _ctx = new ApplicationDbContext(DbOptionsFactory.DbContextOptions))
+            {
+                var _svcContactReport = new ContactReportService(_ctx);
+
+                var lstResult = _svcContactReport.GetReport00001Detail();
+
+
+                Assert.True(oResult.IsValid && oResult.ResultObject && lstResult.Count > 0);
+            }
+        }
 
         [Fact]
         public void GetContactWithInfo()

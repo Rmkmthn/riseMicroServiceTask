@@ -32,6 +32,6 @@ namespace Rise.ContractAPI.Controllers
             var blnResult = _svcContactInfo.DeleteContactInfo(gID);
 
             return Ok(blnResult);
-        }
+        }        
     }
 }

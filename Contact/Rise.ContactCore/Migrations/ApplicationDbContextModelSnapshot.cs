@@ -50,13 +50,16 @@ namespace Rise.ContactCore.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("ConstID", "ConstValue")
+                        .IsUnique();
+
                     b.ToTable("Consts");
 
                     b.HasData(
                         new
                         {
-                            Id = new Guid("8a4f8571-c184-4602-935a-5bf7fd78aa2b"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 411, DateTimeKind.Unspecified).AddTicks(335), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("4d3df43e-62dc-47ae-b0d6-e164c26bad0b"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 6, 11, 24, 18, 979, DateTimeKind.Unspecified).AddTicks(1022), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Cell Phone",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 0,
@@ -65,8 +68,8 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("4ad9a6a0-11eb-4a18-8e71-80710063feea"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2310), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("883c5484-af9d-4899-819e-333387e7ffd4"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 6, 11, 24, 18, 982, DateTimeKind.Unspecified).AddTicks(4252), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "E-Mail",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 1,
@@ -75,8 +78,8 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("65246cd0-73db-45c7-8efb-36dde39293a1"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2337), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("3ff34731-a750-40e6-ac57-db9c468cab27"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 6, 11, 24, 18, 982, DateTimeKind.Unspecified).AddTicks(4279), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Location",
                             ConstID = "ContactInfoTypes",
                             ConstOrder = 2,
@@ -85,8 +88,8 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("62f07822-e806-4530-a23c-6fe7af9c928d"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2341), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("cf322c38-59d4-45cc-84cd-b589f294c2ba"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 6, 11, 24, 18, 982, DateTimeKind.Unspecified).AddTicks(4282), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Preparing",
                             ConstID = "ReportStatus",
                             ConstOrder = 0,
@@ -95,8 +98,8 @@ namespace Rise.ContactCore.Migrations
                         },
                         new
                         {
-                            Id = new Guid("7c3822b8-85a1-405f-b9c1-0a8a24547b9f"),
-                            CDate = new DateTimeOffset(new DateTime(2022, 2, 5, 1, 33, 54, 414, DateTimeKind.Unspecified).AddTicks(2344), new TimeSpan(0, 3, 0, 0, 0)),
+                            Id = new Guid("4a208f32-a985-4859-8b05-90e6dff3d4ae"),
+                            CDate = new DateTimeOffset(new DateTime(2022, 2, 6, 11, 24, 18, 982, DateTimeKind.Unspecified).AddTicks(4284), new TimeSpan(0, 3, 0, 0, 0)),
                             ConstDesc = "Completed",
                             ConstID = "ReportStatus",
                             ConstOrder = 1,
