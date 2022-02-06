@@ -11,7 +11,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "RabbitMQ", "RabbitMQ", "{E8
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.APIGateway", "Rise.APIGateway\Rise.APIGateway.csproj", "{982DC8B0-EC02-4288-906A-E291A4C18DF8}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.ContractAPI", "Contact\Rise.ContactAPI\Rise.ContractAPI.csproj", "{B884E38A-3EC0-491C-8A49-A37BE495E9C3}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.ContactAPI", "Contact\Rise.ContactAPI\Rise.ContactAPI.csproj", "{B884E38A-3EC0-491C-8A49-A37BE495E9C3}"
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Rise.ContactCore", "Contact\Rise.ContactCore\Rise.ContactCore.csproj", "{5D7535DD-6135-4A7E-8E76-92D946637F44}"
 EndProject
